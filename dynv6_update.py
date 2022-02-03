@@ -27,8 +27,9 @@ try:
                 last_ipv6 = ipv6
 
                 update_url_ipv4 = "https://dynv6.com/api/update?hostname=" + args.hostname + "&token=" + args.token + "&ipv4=" + ipv4
-                update_url_ipv6 = "https://dynv6.com/api/update?hostname=" + args.hostname + "&token=" + args.token + "&ipv6=" + ipv6
+                update_url_ipv6 = "https://dynv6.com/api/update?hostname=" + args.hostname + "&token=" + args.token + "&ipv6prefix=" + ipv6
                 print(update_url_ipv6)
+                print(update_url_ipv4)
                 success_ipv4 = requests.get(update_url_ipv4)
                 success_ipv6 = requests.get(update_url_ipv6)
                 if success_ipv4.status_code != 200 or success_ipv6.status_code != 200:
