@@ -12,16 +12,20 @@ args = parser.parse_args()
 
 last_ip = ""
 
-while True:
-    r = requests.get('https://api.ipify.org/?format=json')
-    if r.status_code == 200:
-        ip = r.json()["ip"]
-        if last_ip != ip:
-            last_ip = ip
-            update_url = "http://dynv6.com/api/update?hostname=" + args.hostname + "&token=" + args.token + "&ipv4=" + ip
-            success = requests.get(update_url)
-            if success.status_code != 200:
-                print("Update was not successful")
-            else:
-                print("Successfuly updated ip to " + ip)
-    time.sleep(args.frequency * 60)
+try:
+    while True:
+        r = requests.get('https://api.ipify.org/?format=json')
+        if r.status_code == 200:
+            ip = r.json()["ip"]
+            if last_ip != ip:
+                last_ip = ip
+                update_url = "https://dynv6.com/api/update?hostname=" + args.hostname + "&token=" + args.token + "&ipv4=" + ip
+                success = requests.get(update_url)
+                if success.status_code != 200:
+                    print("Update was not successful")
+                else:
+                    print("Successfuly updated ip to " + ip)
+        time.sleep(args.frequency * 60)
+except KeyboardInterrupt:
+    print("Shutting down update service")
+    exit(0)
