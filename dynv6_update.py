@@ -1,6 +1,5 @@
 import argparse
 import json
-from msilib.schema import Error
 import requests
 import time
 
