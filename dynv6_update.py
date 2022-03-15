@@ -37,7 +37,7 @@ try:
                     if success_ipv4.status_code != 200 or success_ipv6.status_code != 200:
                         print("Update was not successful")
                     else:
-                    print("Successfuly updated ip to " + ipv6)
+                        print("Successfuly updated ip to " + ipv6)
         except:
             print("Update failed")
         time.sleep(args.frequency * 60)
